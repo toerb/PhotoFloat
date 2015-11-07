@@ -52,7 +52,7 @@ deploy: all
 	
 	@echo "    RSYNC   . $(WEB_SERVER):$(HTDOCS_PATH)"
 	@ssh -t $(SSH_OPTS) $(WEB_SERVER) "sudo -u $(HTDOCS_USER) -v"
-	@rsync -aizm --delete-excluded --exclude=.ssh-deployment.sock --exclude=Makefile --exclude=*.swp \
+	@rsync -aizmL --delete-excluded --exclude=.ssh-deployment.sock --exclude=Makefile --exclude=*.swp \
 		--exclude=bin/ --include=scripts.min.js --include=styles.min.css \
 		--exclude=*.js --exclude=*.css --rsh="ssh $(SSH_OPTS)" \
 		--rsync-path="sudo -n -u $(HTDOCS_USER) rsync" \
